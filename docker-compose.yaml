@@ -1,8 +1,9 @@
 version: '2'
 
 services:
-  spark:
+  spark-maaster:
     image: docker.io/bitnami/spark:3.3
+    container_name: spark-maaster
     environment:
       - SPARK_MODE=master
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
@@ -15,6 +16,7 @@ services:
       - ".:/test-files:rw"
   spark-worker-1:
     image: docker.io/bitnami/spark:3.3
+    container_name: spark-worker-1
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark:7077
@@ -27,6 +29,7 @@ services:
 
   spark-worker-2:
     image: docker.io/bitnami/spark:3.3
+    container_name: spark-worker-2
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark:7077
